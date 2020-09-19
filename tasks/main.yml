@@ -1,2 +1,22 @@
 ---
-# tasks file for ansible-role-cabal
+- set_fact:
+    cabal_download_url: "{{ cabal_base_url }}/cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-unknown-linux.tar.xz"
+
+- get_url:
+    url: "{{ cabal_download_url }}"
+    dest: "{{ workspace }}/cabal-install-{{ cabal_version }}.tar.xz"
+
+- file:
+    path: "{{ workspace }}/cabal-install-{{ cabal_version }}"
+    state: directory
+
+- unarchive:
+    src: "{{ workspace }}/cabal-install-{{ cabal_version }}.tar.xz"
+    dest: "{{ workspace }}/cabal-install-{{ cabal_version }}/"
+    remote_src: true
+
+- copy:
+    src: "{{ workspace }}/cabal-install-{{ cabal_version }}/cabal"
+    dest: /usr/local/bin/cabal
+    mode: 0755
+    remote_src: true

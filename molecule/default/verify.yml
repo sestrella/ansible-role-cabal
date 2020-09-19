@@ -1,9 +1,8 @@
 ---
-# This is an example playbook to execute Ansible tests.
-
 - name: Verify
   hosts: all
   tasks:
-  - name: Example assertion
-    assert:
-      that: true
+    - command: /usr/local/bin/cabal --version
+      register: result
+    - assert:
+        that: "'3.2.0.0' in result.stdout"

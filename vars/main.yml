@@ -1,2 +1,2 @@
 ---
-# vars file for ansible-role-cabal
+cabal_base_url: "https://downloads.haskell.org/~cabal/cabal-install-{{ cabal_version }}"
