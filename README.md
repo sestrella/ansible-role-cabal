@@ -1,6 +1,8 @@
 Role Name
 =========
 
+![CI](https://github.com/sestrella/ansible-role-cabal/workflows/CI/badge.svg)
+
 A brief description of the role goes here.
 
 Requirements
