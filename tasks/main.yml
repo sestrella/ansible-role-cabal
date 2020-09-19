@@ -1,5 +1,10 @@
 ---
-- name: Define cabal_download_url
+- name: Define cabal_download_url (Darwin)
+  set_fact:
+    cabal_download_url: "{{ cabal_base_url }}/cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-apple-darwin17.7.0.tar.xz"
+  when: ansible_system == 'Darwin'
+
+- name: Define cabal_download_url (Linux)
   set_fact:
     cabal_download_url: "{{ cabal_base_url }}/cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-unknown-linux.tar.xz"
   when: ansible_system == 'Linux'
