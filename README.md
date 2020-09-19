@@ -1,9 +1,8 @@
-Role Name
-=========
+# Ansible Role: Cabal
 
 ![CI](https://github.com/sestrella/ansible-role-cabal/workflows/CI/badge.svg)
 
-A brief description of the role goes here.
+Installs [Haskell Cabal](https://www.haskell.org/cabal/).
 
 Requirements
 ------------
