@@ -18,6 +18,7 @@
 - name: Extract cabal
   unarchive:
     src: "{{ workspace }}/cabal-install-{{ cabal_version }}.tar.xz"
+    dest: "{{ workspace }}/cabal-install-{{ cabal_version }}/"
     mode: 0755
     remote_src: true
 
