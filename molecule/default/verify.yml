@@ -2,7 +2,9 @@
 - name: Verify
   hosts: all
   tasks:
-    - command: /usr/local/bin/cabal --version
+    - name: Get cabal version # noqa 301
+      command: /usr/local/bin/cabal --version
       register: result
-    - assert:
+    - name: Check cabal version
+      assert:
         that: "'3.2.0.0' in result.stdout"
