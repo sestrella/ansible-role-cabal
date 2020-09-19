@@ -1,6 +1,7 @@
 ---
 - set_fact:
     cabal_download_url: "{{ cabal_base_url }}/cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-unknown-linux.tar.xz"
+  when: ansible_system == 'Linux'
 
 - get_url:
     url: "{{ cabal_download_url }}"
