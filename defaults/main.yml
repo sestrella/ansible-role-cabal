@@ -1,3 +1,3 @@
 ---
-workspace: /root
+workspace: "{{ ansible_user_dir }}"
 cabal_version: 3.2.0.0
