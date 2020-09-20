@@ -1,16 +1,22 @@
 ---
-name: Linux
+name: Darwin
 
 on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
 
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
+      - if: matrix.os == 'macos-latest'
+        run: brew install gnu-tar
       - run: python -m pip install -r requirements.txt
-      - run: mol test -s linux
+      - run: mol test
