@@ -2,17 +2,17 @@
 
 ![CI](https://github.com/sestrella/ansible-role-cabal/workflows/CI/badge.svg)
 
-Installs [Haskell Cabal](https://www.haskell.org/cabal/).
+Installs [Haskell Cabal](https://www.haskell.org/cabal/). Inspired by Jeff
+Geerling's [Ruby role](https://github.com/geerlingguy/ansible-role-ruby)
 
 ## Requirements
 
 None.
 
 
-Role Variables
---------------
+## Role Variables
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+TODO
 
 ## Dependencies
 
