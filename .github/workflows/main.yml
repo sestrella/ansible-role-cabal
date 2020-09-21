@@ -27,7 +27,6 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-            ${{ runner.os }}-
       - uses: actions/cache@v2
         if: matrix.os == 'ubuntu-latest'
         with:
@@ -35,6 +34,7 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-            ${{ runner.os }}-
+      - run: brew install gnu-tar
+        if: matrix.os == 'macos-latest'
       - run: python -m pip install -r requirements.txt
       - run: mol test
