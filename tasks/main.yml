@@ -13,6 +13,12 @@
     - ansible_system == 'Linux'
     - cabal_download_filename is not defined
 
+- name: Install packages (Darwin)
+  homebrew:
+    name: gnu-tar
+    state: present
+  when: ansible_system == 'Darwin'
+
 - name: Download cabal
   get_url:
     url: "{{ __cabal_base_url }}/{{ cabal_download_filename }}"
