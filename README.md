@@ -1,6 +1,7 @@
 # Ansible Role: Cabal
 
-![CI](https://github.com/sestrella/ansible-role-cabal/workflows/CI/badge.svg)
+![Darwin](https://github.com/sestrella/ansible-role-cabal/workflows/Darwin/badge.svg)
+![Linux](https://github.com/sestrella/ansible-role-cabal/workflows/Linux/badge.svg)
 
 Installs [Haskell Cabal](https://www.haskell.org/cabal/). Inspired by Jeff
 Geerling's [Ruby role](https://github.com/geerlingguy/ansible-role-ruby)
