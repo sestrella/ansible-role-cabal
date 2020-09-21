@@ -20,5 +20,21 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
+      - uses: actions/cache@v2
+        if: matrix.os == 'macos-latest'
+        with:
+          path: ~/Library/Caches/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
+      - uses: actions/cache@v2
+        if: matrix.os == 'ubuntu-latest'
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
       - run: python -m pip install -r requirements.txt
       - run: mol test
