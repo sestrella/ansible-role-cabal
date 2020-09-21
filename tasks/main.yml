@@ -1,29 +1,21 @@
 ---
-- name: ansible_kernel_version
-  debug:
-    msg: "{{ ansible_kernel_version }}"
-
-- name: ansible_distribution_release
-  debug:
-    msg: "{{ ansible_distribution_release }}"
-
-- name: ansible_distribution_version
-  debug:
-    msg: "{{ ansible_distribution_version }}"
-
-- name: Define cabal_download_url (Darwin)
+- name: Define cabal_download_filename (Darwin)
   set_fact:
-    cabal_download_url: "{{ cabal_base_url }}/cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-apple-darwin17.7.0.tar.xz"
-  when: ansible_system == 'Darwin'
+    cabal_download_filename: "cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-apple-darwin17.7.0.tar.xz"
+  when:
+    - ansible_system == 'Darwin'
+    - cabal_download_filename is not defined
 
-- name: Define cabal_download_url (Linux)
+- name: Define cabal_download_filename (Linux)
   set_fact:
-    cabal_download_url: "{{ cabal_base_url }}/cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-unknown-linux.tar.xz"
-  when: ansible_system == 'Linux'
+    cabal_download_filename: "cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-unknown-linux.tar.xz"
+  when:
+    - ansible_system == 'Linux'
+    - cabal_download_filename is not defined
 
 - name: Download cabal
   get_url:
-    url: "{{ cabal_download_url }}"
+    url: "{{ __cabal_base_url }}/{{ cabal_download_filename }}"
     dest: "{{ workspace }}/cabal-install-{{ cabal_version }}.tar.xz"
 
 - name: Create extract directory

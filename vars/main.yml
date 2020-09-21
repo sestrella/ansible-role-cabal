@@ -1,2 +1,2 @@
 ---
-cabal_base_url: "https://downloads.haskell.org/~cabal/cabal-install-{{ cabal_version }}"
+__cabal_base_url: "https://downloads.haskell.org/~cabal/cabal-install-{{ cabal_version }}"
