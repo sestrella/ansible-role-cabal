@@ -1,4 +1,16 @@
 ---
+- name: ansible_kernel_version
+  debug:
+    msg: "{{ ansible_kernel_version }}"
+
+- name: ansible_distribution_release
+  debug:
+    msg: "{{ ansible_distribution_release }}"
+
+- name: ansible_distribution_version
+  debug:
+    msg: "{{ ansible_distribution_version }}"
+
 - name: Define cabal_download_url (Darwin)
   set_fact:
     cabal_download_url: "{{ cabal_base_url }}/cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-apple-darwin17.7.0.tar.xz"
