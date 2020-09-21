@@ -1,21 +1,21 @@
 ---
-- name: Define cabal_download_filename (Darwin)
+- name: Define cabal_download_url (Darwin)
   set_fact:
-    cabal_download_filename: "cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-apple-darwin17.7.0.tar.xz"
+    cabal_download_url: "{{ __cabal_base_url }}/cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-apple-darwin17.7.0.tar.xz"
   when:
     - ansible_system == 'Darwin'
-    - cabal_download_filename is not defined
+    - cabal_download_url is not defined
 
-- name: Define cabal_download_filename (Linux)
+- name: Define cabal_download_url (Linux)
   set_fact:
-    cabal_download_filename: "cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-unknown-linux.tar.xz"
+    cabal_download_url: "{{ __cabal_base_url }}/cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-unknown-linux.tar.xz"
   when:
     - ansible_system == 'Linux'
-    - cabal_download_filename is not defined
+    - cabal_download_url is not defined
 
 - name: Download cabal
   get_url:
-    url: "{{ __cabal_base_url }}/{{ cabal_download_filename }}"
+    url: "{{ cabal_download_url }}"
     dest: "{{ workspace }}/cabal-install-{{ cabal_version }}.tar.xz"
 
 - name: Create extract directory
@@ -34,6 +34,6 @@
 - name: Copy binary
   copy:
     src: "{{ workspace }}/cabal-install-{{ cabal_version }}/cabal"
-    dest: /usr/local/bin/cabal
+    dest: "{{ cabal_install_dir }}/cabal"
     mode: 0755
     remote_src: true

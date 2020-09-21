@@ -1,3 +1,4 @@
 ---
 workspace: "{{ ansible_user_dir }}"
 cabal_version: 3.2.0.0
+cabal_install_dir: /usr/local/bin
