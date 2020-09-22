@@ -1,7 +1,5 @@
 ---
-- name: Define cabal_download_url (Darwin)
-  set_fact:
-    cabal_download_url: "{{ __cabal_base_url }}/cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-apple-darwin17.7.0.tar.xz"
+- import_tasks: darwin.yml
   when:
     - ansible_system == 'Darwin'
     - cabal_download_url is not defined

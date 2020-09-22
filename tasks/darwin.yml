@@ -1,0 +1,16 @@
+---
+- name: Check urls
+  uri:
+    url: "{{ __cabal_base_url }}/{{ item }}"
+    method: HEAD
+    status_code:
+      - 200
+      - 404
+  register: requests
+  with_items:
+    - "cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-apple-darwin17.7.0.tar.xz"
+    - "cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-apple-darwin-sierra.tar.xz"
+
+- name: Define cabal_download_url
+  set_fact:
+    cabal_download_url: "{{ requests.results | selectattr('status', 'equalto', 200) | map(attribute='url') | first }}"
