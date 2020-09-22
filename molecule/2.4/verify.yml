@@ -1,0 +1,10 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Get cabal version # noqa 301
+      command: /usr/local/bin/cabal --version
+      register: result
+    - name: Check cabal version
+      assert:
+        that: "'2.4.1.0' in result.stdout"
