@@ -1,5 +1,5 @@
 ---
-- name: Check urls
+- name: Check URLs (Darwin)
   uri:
     url: "{{ __cabal_base_url }}/{{ item }}"
     method: HEAD
@@ -11,6 +11,6 @@
     - "cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-apple-darwin17.7.0.tar.xz"
     - "cabal-install-{{ cabal_version }}-{{ ansible_architecture }}-apple-darwin-sierra.tar.xz"
 
-- name: Define cabal_download_url
+- name: Define cabal_download_url (Darwin)
   set_fact:
     cabal_download_url: "{{ requests.results | selectattr('status', 'equalto', 200) | map(attribute='url') | first }}"
